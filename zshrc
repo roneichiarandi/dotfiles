@@ -79,8 +79,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [ -f "~/.myaliases" ]; then
-  source ~/.myaliases
+if [ -f "~/.my_aliases" ]; then
+  source ~/.my_aliases
 fi
 
 ### Added by the Heroku Toolbelt
