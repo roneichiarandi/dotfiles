@@ -1,0 +1,7 @@
+[core]
+	excludesfile = /Users/roneichiarandi/.gitignore_global
+[user]
+	name = Ronei Chiarandi
+	email = ronei.chiarandi@gmail.com
+[push]
+	default = simple
