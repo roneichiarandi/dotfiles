@@ -5,3 +5,6 @@
 	email = ronei.chiarandi@gmail.com
 [push]
 	default = simple
+[alias]
+	co = checkout
+	st = status

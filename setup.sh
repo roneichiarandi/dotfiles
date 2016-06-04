@@ -2,7 +2,7 @@
 
 DOTFILES_ROOT=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
-DOTFILES=($(find ${DOTFILES_ROOT} -maxdepth 1 -type f -printf '%f '))
+DOTFILES=($(find ${DOTFILES_ROOT} -not -path '*/.*' -type f -mindepth 1 -maxdepth 1 -exec printf "%s\n" {} + |  awk -F/ '{print $NF}'))
 
 for dotfile in "${DOTFILES[@]}"
 do
