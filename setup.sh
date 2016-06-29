@@ -19,9 +19,8 @@ do
 done
 
 if [[ -d ~/.oh-my-zsh ]]; then
-  rm ~/.oh-my-zsh/themes/agnoster.zsh-theme
-  ln -s "${DOTFILES_ROOT}"/"oh-my-zsh/themes/agnoster.zsh-theme" ~/.oh-my-zsh/themes/agnoster.zsh-theme
-  printf "\nAgnoster modified theme linked\n\n"
+  ln -s "${DOTFILES_ROOT}"/"oh-my-zsh/themes" ~/.oh-my-zsh/custom/themes
+  printf "\nLinked custom themes path\n\n"
 fi
 
 printf "%s installation end\n" $DOTFILES_ROOT
