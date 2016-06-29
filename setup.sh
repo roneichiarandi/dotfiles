@@ -2,7 +2,7 @@
 
 DOTFILES_ROOT=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
 
-DOTFILES=($(find ${DOTFILES_ROOT} -not -path '*/.*' -type f -mindepth 1 -maxdepth 1 -exec printf "%s\n" {} + |  awk -F/ '{print $NF}'))
+DOTFILES=($(find ${DOTFILES_ROOT} -mindepth 1 -maxdepth 1 -not -path '*/.*' -type f -exec printf "%s\n" {} + |  awk -F/ '{print $NF}'))
 
 for dotfile in "${DOTFILES[@]}"
 do
@@ -19,8 +19,13 @@ do
 done
 
 if [[ -d ~/.oh-my-zsh ]]; then
-  ln -s "${DOTFILES_ROOT}"/"oh-my-zsh/themes" ~/.oh-my-zsh/custom/themes
-  printf "\nLinked custom themes path\n\n"
+  if [ -L ~/.oh-my-zsh/custom/themes ]
+  then
+    printf "\nCustom theme path exists\n\n"
+  else
+    ln -s "${DOTFILES_ROOT}"/"oh-my-zsh/themes" ~/.oh-my-zsh/custom/themes
+    printf "\nLinked custom themes path\n\n"
+  fi
 fi
 
 printf "%s installation end\n" $DOTFILES_ROOT
