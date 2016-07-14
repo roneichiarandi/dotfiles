@@ -1,3 +1,4 @@
 alias compose="docker-compose"
 alias docker-clear="docker rmi $(docker images | grep '<none>' | awk '{print $3}')"
 alias projects="cd ~/Dev/Projects"
+alias tailf="tail -f $@"
