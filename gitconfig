@@ -1,10 +1,117 @@
+[hub]
+    protocol = https
+
+[http]
+    sslVerify = false
+
 [core]
-	excludesfile = /Users/roneichiarandi/.gitignore_global
+	excludesfile = ~/.gitignore_global
+
 [user]
 	name = Ronei Chiarandi
 	email = ronei.chiarandi@gmail.com
+
 [push]
 	default = simple
+
+[pull]
+    rebase = true
+
+[merge]
+    log = true
+    ff = false
+
+[color]
+    ui = true
+    pager = true
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = red
+
+[credential]
+    helper = store
+
+[format]
+    pretty = format:'%C(red)%h%Creset: %C(cyan)%an%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset'
+
 [alias]
-	co = checkout
-	st = status
+    # help
+    aliases = config --get-regexp alias
+    contributors = shortlog --summary --numbered
+
+    # warning - remove branches that have already been merged with master
+    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+    # Show verbose output about tags, branches or remotes
+    branchs = branch -a
+    remotes = remote -v
+    tags = tag -l
+    tag = tag
+
+    # General
+    master = checkout master
+    undo = reset --soft HEAD~1
+    all = add --all
+    co = checkout
+    cb = checkout -b
+    ci = commit
+    st = status
+    c = commit -m
+    s = status -s
+    a = add
+    d = diff
+    pm = push origin master
+    pl = pull origin master
+
+    # Branch
+    pub = "!git push origin \"$(git rev-parse --abbrev-ref HEAD)\""
+    plb = "!git pull origin \"$(git rev-parse --abbrev-ref HEAD)\""
+    branch-stream = "!git branch --set-upstream-to=origin/\"$(git rev-parse --abbrev-ref HEAD)\""
+
+    # Merge
+    revert-merge = reset --hard HEAD^
+    m = merge --no-edit
+
+    # Submodule
+    sm = push origin HEAD:master
+    ps = !"git pull; git submodule foreach git pull origin master"
+
+    # Remove all remote merged
+    #rm-merge = branch -r --merged | grep -v master | sed 's/origin\///' | xargs -n 1 git push --delete origin
+
+    # Diff & Logs
+    diffst = diff --stat                                   # Diff overview
+    grapha = log --pretty=nice --date-order --graph --all  # Custom graph log for all branches
+    diffc = diff --cached                                  # Diff what is staged for the next commit
+    graph = log --pretty=nice --date-order --graph         # Custom graph log (append any tree-ish)
+    logst = log --stat                                     # Diffstat log
+    logsf = log --stat --format=oneline --abbrev-commit    # Short format diffstat log
+    logp = log --pretty=nice --date-order                  # Custom pretty log
+
+    # Tree log
+    tree = log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+
+[fetch]
+    prune = true
+
+[branch]
+   autosetuprebase = always
+
+[pretty]
+    # tut: http://gitimmersion.com/lab_10.html
+    # ref: http://linux.die.net/man/1/git-log
+    # Result: <short-sha> <commit-message> (<pointer-names>) -- <commit-author-name>; <relative-time>
+    nice = "%C(yellow)%h%C(reset) %C(white)%s%C(cyan)%d%C(reset) -- %an; %ar"
