@@ -1,5 +1,5 @@
 alias compose="docker-compose"
-alias docker-clear="docker rmi -f $(docker images | grep '<none>' | awk '{print $3}')"
+alias docker-clear="docker rmi -f $(docker images -f "dangling=true" -q)"
 alias docker-remove-all="docker rm -f $(docker ps -aq)"
 alias projects="cd ~/Dev/Projects"
 alias tailf="tail -f $@"
