@@ -1,7 +1,10 @@
 alias compose="docker-compose"
-alias docker-clear="docker rmi -f $(docker images -f "dangling=true" -q)"
+alias docker-clear='docker rmi -f $(docker images -f "dangling=true" -q)'
+alias docker-clear-awk="docker images | grep none | awk '{print $3}' | xargs docker rmi -f"
 alias docker-remove-all="docker rm -f $(docker ps -aq)"
 alias projects="cd ~/Dev/Projects"
 alias tailf="tail -f $@"
 alias dotfiles="cd ~/dotfiles"
 alias docker-remove-exited="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs docker rm"
+alias cochilo="pmset sleepnow"
+alias dorme="sudo shutdown -h +1s"
