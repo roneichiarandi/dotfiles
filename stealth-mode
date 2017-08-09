@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "Set Stealth Mode $@"
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw — setstealthmode $@
