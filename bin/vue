@@ -1,4 +1,4 @@
 #!/bin/sh
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 echo "Current working directory: '"$(pwd)"'"
-docker run --rm -v $(pwd):/src -w /src -v ~/.git-credentials:/root/.git-credentials -v ~/.gitconfig:/root/.gitconfig -v ~/.ssh:/root/.ssh roneichiarandi/vue-cli vue $*
+docker run --rm -it -v $(pwd):/src -w /src -v ~/.git-credentials:/root/.git-credentials -v ~/.gitconfig:/root/.gitconfig -v ~/.ssh:/root/.ssh roneichiarandi/vue-cli vue $*
