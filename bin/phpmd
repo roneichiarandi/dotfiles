@@ -1,4 +1,13 @@
 #!/bin/sh
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 echo "Current working directory: '"$(pwd)"'"
-docker run --rm -v $(pwd):$(pwd) -w $(pwd) roneichiarandi/composer "phpmd $*"
+
+docker run --rm \
+    --network=host \
+    -p 8080:8080 \
+    -v $(pwd):$(pwd):ro \
+    -u $(id -u) \
+    -w $(pwd) roneichiarandi/composer \
+    "phpmd $*"
+
+exit $?

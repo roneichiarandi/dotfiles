@@ -5,11 +5,10 @@ echo "Current working directory: '"$(pwd)"'"
 docker run \
     --rm \
     --network=host \
-    -p 8080:8080 \
     -v $(pwd):$(pwd):ro \
     -u $(id -u) \
     -w $(pwd) \
     roneichiarandi/php:7.1-cli \
-    "php $@"
+    "php $*"
 
 exit $?
