@@ -2,12 +2,13 @@
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 echo "Current working directory: '"$(pwd)"'"
 
-docker run --rm \
+docker run \
+    --rm \
     --network=host \
-    -p 8080:8080 \
     -v $(pwd):$(pwd):ro \
     -u $(id -u) \
-    -w $(pwd) roneichiarandi/composer \
+    -w $(pwd) \
+    roneichiarandi/composer \
     "phpcs $*"
 
 exit $?

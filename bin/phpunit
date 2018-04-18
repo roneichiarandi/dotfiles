@@ -1,4 +1,4 @@
 #!/bin/sh
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 echo "Current working directory: '"$(pwd)"'"
-docker run --rm -v $(pwd):/app -w /app -v ~/.git-credentials:/root/.git-credentials -v ~/.gitconfig:/root/.gitconfig -v ~/.ssh:/root/.ssh roneichiarandi/composer:latest "phpunit $*"
+docker run --rm -it -v $(pwd):$(pwd) -w $(pwd) registry.boacompra.intranet/boacompra-build-php:5.6-phalcon-2.0.0 "phpunit $*"
