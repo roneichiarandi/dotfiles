@@ -202,3 +202,4 @@ build_prompt() {
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
+RPROMPT='%F{blue}| %F{green}%D{%H:%M:%S}'
