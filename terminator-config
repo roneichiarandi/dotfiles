@@ -1,0 +1,27 @@
+[global_config]
+  focus = system
+  handle_size = 3
+[keybindings]
+[profiles]
+  [[default]]
+    background_color = "#002b36"
+    background_darkness = 0.95
+    background_type = transparent
+    font = Meslo LG M DZ for Powerline 10
+    foreground_color = "#eee8d5"
+    show_titlebar = False
+    scrollback_infinite = True
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#586e75:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
+    use_custom_command = True
+    custom_command = /usr/bin/zsh
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+    [[[window0]]]
+      type = Window
+      parent = ""
+[plugins]
