@@ -11,3 +11,11 @@ $ npm --version
 Current working directory: '/usr/local/bin'
 3.10.7
 ```
+
+pdf-generator
+
+```
+$ pip3 install pillow pypdf2
+
+$ $ ln -s ~/dotfiles/bin/pdf-generator /usr/local/bin/pdf-generator
+```
