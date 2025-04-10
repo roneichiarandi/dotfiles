@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# pactl list-sources para verificar o nome do input selecionado.
+# crontab -e
+# */5 * * * * /home/rchiarandi/dotfiles/bin/mic
+
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+
+RAZER_BLACKSHARK_V2_PRO=alsa_input.usb-Razer_Razer_BlackShark_V2_Pro-00.mono-fallback
+
+MIC_SOURCE=$(echo $(/usr/bin/pactl get-default-source))
+
+if [ "$MIC_SOURCE" != "$RAZER_BLACKSHARK_V2_PRO" ]; then
+    /usr/bin/pactl set-default-source $RAZER_BLACKSHARK_V2_PRO
+fi
+
+exit 1
