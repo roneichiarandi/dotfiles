@@ -2,7 +2,7 @@
 
 # pactl list-sources para verificar o nome do input selecionado.
 # crontab -e
-# */5 * * * * /home/rchiarandi/dotfiles/bin/mic
+# * * * * * ( sleep 15; /home/rchiarandi/dotfiles/bin/mic )
 
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
 
