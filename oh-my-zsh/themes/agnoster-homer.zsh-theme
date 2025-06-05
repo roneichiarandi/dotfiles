@@ -189,6 +189,16 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
+prompt_host() {
+  local current_host="${HOME}/.current_host"
+  local host=${$(cat $current_host)#"all-"}
+  if [[ $host == "original" ]]; then
+    host="prod"
+  fi
+  host=$(echo $host | tr '[:lower:]' '[:upper:]')
+  echo "🖥️  $host"
+}
+
 ## Main prompt
 build_prompt() {
   RETVAL=$?
@@ -202,4 +212,4 @@ build_prompt() {
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
-RPROMPT='%F{blue}| %F{green}%D{%H:%M:%S}'
+RPROMPT='$(prompt_host) %{%f%b%k%}| %F{green}%D{%H:%M:%S}'
