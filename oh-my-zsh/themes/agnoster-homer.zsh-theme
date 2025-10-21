@@ -98,7 +98,13 @@ prompt_git() {
   if $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
     dirty=$(parse_git_dirty)
     ref=$(git symbolic-ref HEAD 2> /dev/null) || ref="➦ $(git rev-parse --short HEAD 2> /dev/null)"
+    git_diff=""
+
     if [[ -n $dirty ]]; then
+      diff_file_count=$(git diff --numstat | wc -l)
+      diff_changes=$(git diff --numstat | awk '{added+=$1; deleted+=$2} END {print "%{%F{#007000}%}+"added"%{%F{red}%}-"deleted}')
+      git_diff="%B% \U1F5CE ${diff_file_count} ${diff_changes} %b"
+
       prompt_segment yellow black
     else
       prompt_segment green black
@@ -123,7 +129,7 @@ prompt_git() {
     zstyle ':vcs_info:*' formats ' %u%c'
     zstyle ':vcs_info:*' actionformats ' %u%c'
     vcs_info
-    echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}"
+    echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode} ${git_diff}"
   fi
 }
 
@@ -189,6 +195,40 @@ prompt_status() {
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
 
+# System info with icons
+prompt_system_info() {
+  local system_info=""
+
+  # Battery status (if available)
+  if [[ -f "/sys/class/power_supply/BAT0/capacity" ]]; then
+    local battery=$(cat /sys/class/power_supply/BAT0/capacity 2>/dev/null)
+    if [[ -n $battery ]]; then
+      if [[ $battery -gt 80 ]]; then
+        system_info+="🔋"
+      elif [[ $battery -gt 50 ]]; then
+        system_info+="🔋"
+      elif [[ $battery -gt 20 ]]; then
+        system_info+="🪫"
+      else
+        system_info+="🪫"
+      fi
+      system_info+="$battery%% "
+    fi
+  else
+    system_info+="🔌"
+  fi
+
+  # Load average
+  # local load=$(uptime | awk -F'load average:' '{ print $2 }' | cut -d, -f1 | xargs)
+  # if [[ -n $load ]]; then
+  #   system_info+=" ⚡$load"
+  # fi
+
+  if [[ -n "$system_info" ]]; then
+    prompt_segment black yellow "$system_info"
+  fi
+}
+
 prompt_host() {
   local current_host="${HOME}/.current_host"
   local host=${$(cat $current_host)#"all-"}
@@ -203,6 +243,7 @@ prompt_host() {
 build_prompt() {
   RETVAL=$?
   prompt_status
+  prompt_system_info
   prompt_virtualenv
   prompt_context
   prompt_dir
@@ -212,4 +253,4 @@ build_prompt() {
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
-RPROMPT='$(prompt_host) %{%f%b%k%}| %F{green}%D{%H:%M:%S}'
+RPROMPT='%F{green}🕒 %D{%H:%M:%S}'
