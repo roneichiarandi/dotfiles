@@ -6,7 +6,7 @@ DOTFILES=($(find ${DOTFILES_ROOT} -mindepth 1 -maxdepth 1 -not -path '*/.*' -typ
 
 DOTFILES_BIN_PATH=${DOTFILES_ROOT}/bin/
 
-BIN_PATH=/usr/local/bin/
+BIN_PATH={$HOME}/.local/bin/
 
 for dotfile in "${DOTFILES[@]}"
 do

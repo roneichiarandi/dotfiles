@@ -6,6 +6,7 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
+    editor = 'vim'
 
 [user]
 	name = Ronei Chiarandi
