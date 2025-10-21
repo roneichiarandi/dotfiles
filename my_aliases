@@ -9,3 +9,4 @@ alias docker-remove-exited="docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs d
 alias cochilo="pmset sleepnow"
 alias dorme="sudo shutdown -h +1s"
 alias aws='docker run --rm -ti -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli'
+alias uuid='uuidgen | xclip -selection clipboard -rmlastnl'
