@@ -199,8 +199,10 @@ prompt_status() {
 prompt_system_info() {
   local system_info=""
 
-  # Battery status (if available)
-  if [[ -f "/sys/class/power_supply/BAT0/capacity" ]]; then
+  local power_supply=$(cat /sys/class/power_supply/AC/online 2>/dev/null)
+
+  # Battery status (if available) and is not plugged in
+  if [[ -f "/sys/class/power_supply/BAT0/capacity" && $power_supply -eq 0 ]]; then
     local battery=$(cat /sys/class/power_supply/BAT0/capacity 2>/dev/null)
     if [[ -n $battery ]]; then
       if [[ $battery -gt 80 ]]; then
