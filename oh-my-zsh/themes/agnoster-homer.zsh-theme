@@ -214,7 +214,7 @@ prompt_system_info() {
       else
         system_info+="🪫"
       fi
-      system_info+="$battery%% "
+      system_info+="$battery%%"
     fi
   else
     system_info+="🔌"
