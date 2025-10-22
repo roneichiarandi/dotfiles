@@ -257,4 +257,4 @@ build_prompt() {
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
-RPROMPT='%F{green}🕒 %D{%H:%M:%S}'
+RPROMPT='$(prompt_host)%{%f%b%k%} 🕒 %F{green}%D{%H:%M:%S}'
