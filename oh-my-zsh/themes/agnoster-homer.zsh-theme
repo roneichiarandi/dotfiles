@@ -199,11 +199,15 @@ prompt_status() {
 prompt_system_info() {
   local system_info=""
 
-  local power_supply=$(cat /sys/class/power_supply/AC/online 2>/dev/null)
-
   # Battery status (if available) and is not plugged in
-  if [[ -f "/sys/class/power_supply/BAT0/capacity" && $power_supply -eq 0 ]]; then
+  if [[ -f "/sys/class/power_supply/BAT0/capacity" ]]; then
     local battery=$(cat /sys/class/power_supply/BAT0/capacity 2>/dev/null)
+    local power_supply=$(cat /sys/class/power_supply/AC/online 2>/dev/null)
+
+    if [[ $power_supply -eq 1 ]]; then
+      system_info+="⚡"
+    fi
+
     if [[ -n $battery ]]; then
       if [[ $battery -gt 80 ]]; then
         system_info+="🔋"
@@ -216,8 +220,6 @@ prompt_system_info() {
       fi
       system_info+="$battery%%"
     fi
-  else
-    system_info+="🔌"
   fi
 
   # Load average
