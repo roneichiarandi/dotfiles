@@ -103,7 +103,7 @@ prompt_git() {
     if [[ -n $dirty ]]; then
       diff_file_count=$(git diff --numstat | wc -l)
       diff_changes=$(git diff --numstat | awk '{added+=$1; deleted+=$2} END {print "%{%F{#007000}%}+"added"%{%F{red}%}-"deleted}')
-      git_diff="%B% \U1F5CE ${diff_file_count} ${diff_changes} %b"
+      git_diff=" %B% \U1F5CE ${diff_file_count} ${diff_changes}%b"
 
       prompt_segment yellow black
     else
@@ -129,7 +129,7 @@ prompt_git() {
     zstyle ':vcs_info:*' formats ' %u%c'
     zstyle ':vcs_info:*' actionformats ' %u%c'
     vcs_info
-    echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode} ${git_diff}"
+    echo -n "${ref/refs\/heads\//$PL_BRANCH_CHAR }${vcs_info_msg_0_%% }${mode}${git_diff}"
   fi
 }
 
