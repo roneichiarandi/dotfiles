@@ -35,7 +35,7 @@ layers:
       # Arbitrary HID usage codes (decimal) may be given like this: '<101>'.
       # See https://www.usb.org/sites/default/files/documents/hut1_12v2.pdf (section 10)
       # for HID usage code list.
-      - ["printscreen", "ctrl-alt-shift-g", "ctrl-alt-shift-m"]
+      - ["printscreen", "ctrl-alt-shift-g", "ctrl-shift-m"]
       knobs:
         # Knobs are listed from left to right if horizontal.
         # Knobs are listed from top to bottom if vertical.
