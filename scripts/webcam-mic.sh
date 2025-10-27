@@ -6,7 +6,7 @@ DEFAULT_VENDOR="1b17"
 DEFAULT_PRODUCT="0211"
 
 # Arquivo da regra udev
-CONF_FILE="/etc/udev/rules.d/99-disable-webcam-audio.rules"
+CONF_FILE="/etc/modprobe.d/disable-webcam-mic.conf"
 
 usage() {
     cat <<EOF
