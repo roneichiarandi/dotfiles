@@ -27,7 +27,7 @@ def get_clipboard_image():
 def extract_text_from_image(image):
     import pytesseract
     image = preprocess_image(image)
-    text = pytesseract.image_to_string(image)
+    text = pytesseract.image_to_string(image, lang='por')
     return text.strip()
 
 # Detecta se o fundo da imagem é escuro

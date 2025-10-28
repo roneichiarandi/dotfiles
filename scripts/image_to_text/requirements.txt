@@ -1,3 +1,4 @@
 Pillow
 pytesseract
 pyperclip
+pyinstaller
