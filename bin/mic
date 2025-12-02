@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# pactl list-sources para verificar o nome do input selecionado.
-# crontab -e
-# * * * * * ( sleep 15; /home/rchiarandi/dotfiles/bin/mic )
-
 export XDG_RUNTIME_DIR=/run/user/$(id -u)
 
 RAZER_BLACKSHARK_V2_PRO=alsa_input.usb-Razer_Razer_BlackShark_V2_Pro-00.mono-fallback

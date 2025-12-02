@@ -22,3 +22,15 @@ $ lsusb -v
 
 $ ./ch57x upload mini-keyboard.yaml
 ```
+
+## ./bin/mic
+
+```bash
+$ sudo apt update && sudo apt install pulseaudio
+
+$ /usr/bin/pactl list | grep alsa_input #buscar o nome do microfone
+
+$ crontab -e
+
+ ```
+# * * * * * ( sleep 15; /home/$(whoami)/dotfiles/bin/mic )
