@@ -31,6 +31,5 @@ $ sudo apt update && sudo apt install pulseaudio
 $ /usr/bin/pactl list | grep alsa_input #buscar o nome do microfone
 
 $ crontab -e
-
- ```
-# * * * * * ( sleep 15; /home/$(whoami)/dotfiles/bin/mic )
+```
+ `* * * * * ( sleep 15; /home/$(whoami)/dotfiles/bin/mic )`
